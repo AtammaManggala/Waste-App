@@ -52,6 +52,7 @@ route::middleware(['auth'])->group(function(){
     route::get('/pengguna',[Penggunacontroller::class, 'index'])->middleware('userAkses:pengguna')->name('pengguna.index');
     route::get('/logout',[Sesicontroller::class, 'logout']);
     route::get('/transaksiHarian',[DailyTransactionscontroller::class, 'index'])->name('transaksiHarian.index');
+    route::get('/profil', [QrCodeController::class, 'index'])->name('profil.index');
 });
 
 //qr code generate

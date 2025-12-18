@@ -61,7 +61,8 @@
 
       <hr class="text-secondary">
 
-      <a href="#">Halaman Utama</a>
+      <a href="{{route('pengguna.index')}}">Halaman Utama</a>
+      <a href="{{route('profil.index')}}">Profil</a>
       <a href="{{route('transaksiHarian.index')}}">Transaksi Harian</a>
       <a href="#">Rekap Transaksi</a>
       <a href="#">Daftar Hadiah</a>

@@ -22,11 +22,10 @@ class DummyUsersData extends Seeder
             //     'barcode'=>'1',
             // ],
             [
-                'name'=>'tamma',
-                'email'=>'tamma@gmail.com',
+                'name'=>'idoy',
+                'email'=>'idoy@gmail.com',
                 'role'=>'pengguna',
                 'password'=>bcrypt('123456'),
-                'barcode'=>'2',
             ],
         ];
         foreach($userData as $key => $val){
