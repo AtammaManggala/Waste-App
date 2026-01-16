@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\User;
+use App\Models\point;
 use Illuminate\Http\Request;
 
 class Userscontroller extends Controller
@@ -12,7 +13,14 @@ class Userscontroller extends Controller
      */
     public function index()
     {
-        //
+        // ambil hanya pengguna (bukan admin)
+        $users = User::where('role', 'pengguna')
+        ->withSum('dailyTransactions as jml_botol', 'jml_botol')
+        ->with('countTransaction')
+        ->get();
+
+        $masterPoint = point::first()->point ?? 0;
+        return view('admin.daftarUser.index', compact('users', 'masterPoint'));
     }
 
     /**
@@ -44,6 +52,8 @@ class Userscontroller extends Controller
      */
     public function edit(string $id)
     {
+        $users = User::findOrFail($id);
+        return view('admin.daftarUser.update', compact('users'));
         //
     }
 
@@ -52,6 +62,13 @@ class Userscontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $users = User::findOrFail($id);
+        $users->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+        ]);
+        return redirect()->route('daftarUser.index')
+            ->with('success', 'Data User berhasil diperbarui');
         //
     }
 
@@ -60,6 +77,10 @@ class Userscontroller extends Controller
      */
     public function destroy(string $id)
     {
+        $users = user::findOrFail($id);
+        $users->delete();
+        return redirect()->route('daftarUser.index')
+            ->with('success', 'Data User berhasil dihapus');
         //
     }
 }

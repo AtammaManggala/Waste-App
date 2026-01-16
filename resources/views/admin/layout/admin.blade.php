@@ -61,12 +61,10 @@
 
       <hr class="text-secondary">
 
-      <a href="{{route('pengguna.index')}}">Halaman Utama</a>
-      <a href="{{route('profil.index')}}">Profil</a>
-      <a href="{{route('transaksiHarian.index')}}">Transaksi Harian</a>
-      <a href="{{route('rekapTransaksi.index')}}">Rekap Transaksi</a>
-      <a href="{{route('reward.index')}}">Daftar Hadiah</a>
-      <a href="{{route('historyReward.index')}}">Riwayat Penukaran Hadiah</a>
+      <a href="{{route('admin.index')}}">Halaman Utama</a>
+      <a href="{{route('daftarUser.index')}}">Data User</a>
+      <a href="{{route('rekapTransactions.index')}}">Data Transaksi Harian</a>
+      <a href="{{route('rewardAdmin.index')}}">Data Reward</a>
 
       <hr class="text-secondary">
 
@@ -77,10 +75,11 @@
     <!-- Content -->
     <div class="col-md-9 col-lg-10 content d-flex justify-content-center align-items-center" style="min-height: 100vh;">
       <div class="text-white text-center">
-        <h2>Halo {{ $user->name }} 👋</h2>
-        <p>Apa yang ingin kalian lakukan sekarang?</p>
+        <h2>Halo Mas Admin 👋</h2>
+        <p>Apa yang ingin anda lakukan sekarang?</p>
       </div>
     </div>
+
   </div>
 </div>
 

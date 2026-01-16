@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class rewards extends Model
 {
@@ -19,5 +20,7 @@ class rewards extends Model
     public function rewardTransactions()
     {
         return $this->hasMany(Rewardtransactions::class, 'reward_id');
+        return $this->hasMany(Rewardtransactions::class);
+
     }
 }

@@ -1,82 +1,183 @@
-    <!--begin::App Wrapper-->
-    <div class="app-wrapper">
-      <!--begin::Header-->
-      
-      <!--end::Header-->
-      <!--begin::Sidebar-->
-      
-      <!--end::Sidebar-->
-      <!--begin::App Main-->
-      <main class="app-main">
+<!doctype html>
+<html lang="en">
 
-      <div class="app-content-header">
-          <!--begin::Container-->
-          <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Scanning Bottle</h3></div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
-              </div>
-            </div>
-            <!--end::Row-->
-          </div>
-          <!--end::Container-->
-        </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
 
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <div class="app-content">
-          <!--begin::Container-->
-          <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card mb-4">
-                    <div class="card-header">
-                      <div class="row">
-                          <div class="col-11">
-                            <h3 class="card-title">Rewards List</h3>
-                          </div>
-                      </div>
-                    </div>
+  <style>
+  body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+  }
 
-                    <div class="card-body p-0">
-                        <table class="table table-striped">
-                            <tr>
-                                    <td>No</td>
-                                    <td>nama reward</td>
-                                    <td>point</td>
-                            </tr>
-                            @php $no = 1; @endphp
-                            @foreach($data as $row)
+  .sidebar {
+    min-height: 100vh;
+    background-color: #1f2937;
+  }
 
-                            <tr>
-                                <td>{{$no++}}</td>
-                                <td>{{$row->reward_name}}</td>
-                                <td>{{$row->point}}</td>
-                            </tr>
-                            @endforeach
-                        </table>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  .sidebar a {
+    color: #d1d5db;
+    text-decoration: none;
+    padding: 12px 15px;
+    display: block;
+    border-radius: 6px;
+  }
 
-        <div class="app-content">
-          <!--begin::Container-->
-          <div class="container-fluid">
+  .sidebar a:hover {
+    background-color: #374151;
+    color: #ffffff;
+  }
 
-          </div>
-</section>
-</main>
-      <!--end::App Main-->
-      <!--begin::Footer-->
-      
+  .sidebar-title {
+    font-weight: 600;
+    color: #ffffff;
+  }
 
-      <!--end::Footer-->
+  .content {
+    padding: 30px;
+  }
+
+  .card-dashboard {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+
+  .table-rounded {
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  th {
+    border-right: 1px solid black;
+
+  }
+
+  td {
+    border-right: 1px solid black;
+
+  }
+
+  .table-rounded thead th.rounded-start {
+    border-top-left-radius: 14px;
+  }
+
+  .table-rounded thead th.rounded-end {
+    border-top-right-radius: 14px;
+  }
+  </style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- Sidebar -->
+    <div class="col-md-3 col-lg-2 sidebar p-3">
+      <h5 class="sidebar-title mb-4">Waste-App</h5>
+
+      <hr class="text-secondary">
+
+      <a href="{{route('pengguna.index')}}">Halaman Utama</a>
+      <a href="{{route('profil.index')}}">Profil</a>
+      <a href="{{route('transaksiHarian.index')}}">Transaksi Harian</a>
+      <a href="{{route('rekapTransaksi.index')}}">Rekap Transaksi</a>
+      <a href="{{route('reward.index')}}">Daftar Hadiah</a>
+      <a href="{{route('historyReward.index')}}">Riwayat Penukaran Hadiah</a>
+
+      <hr class="text-secondary">
+
+      <!-- JANGAN DIUBAH -->
+      <a href="/logout" class="text-danger">Logout</a>
     </div>
+
+  <!-- Content -->
+  <div class="col-md-9 col-lg-10 content">
+
+    <div class="mb-4 text-white">
+      <h2>Daftar Hadiah</h2>
+      <p>Tukarkan poin Anda dengan hadiah yang tersedia</p>
+    </div>
+
+
+    <!-- alert notifikasi -->
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show mx-3 mt-3" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show mx-3 mt-3" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+    <!-- end alert -->
+
+
+    <!-- Card Tabel Reward -->
+    <div class="card card-dashboard">
+      <div class="card-body p-0">
+
+        <table class="table table-hover mb-0 table-rounded table-line">
+          <thead class="table-light">
+            <tr>
+              <th class="rounded-start">No</th>
+              <th>Nama Hadiah</th>
+              <th>Poin Dibutuhkan</th>
+              <th class="rounded-end text-center">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            @php $no = 1; @endphp
+            @foreach($rewards as $reward)
+            <tr>
+              <td>{{ $no++ }}</td>
+              <td>{{ $reward->reward_name }}</td>
+              <td>
+                <span class="badge bg-warning text-dark">
+                  {{ number_format($reward->point) }} Poin
+                </span>
+              </td>
+              <td class="text-center">
+                <form action="{{ route('reward.tukar', $reward->id) }}" method="POST">
+                  @csrf
+                  <button type="submit" class="btn btn-sm btn-success">
+                    Tukar
+                  </button>
+                </form>
+              </td>
+            </tr>
+            @endforeach
+
+            @if($rewards->isEmpty())
+            <tr>
+              <td colspan="5" class="text-center text-muted py-3">
+                Belum ada hadiah tersedia
+              </td>
+            </tr>
+            @endif
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

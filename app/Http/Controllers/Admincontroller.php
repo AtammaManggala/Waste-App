@@ -12,10 +12,8 @@ class Admincontroller extends Controller
      */
     public function index()
     {
-        return view('admin.admin');
-        // echo "halo selamat datang";
-        // echo "<h1>". Auth::user()->name ."</h1>";
-        // echo "<a href='/logout'>Logout</a>";
+        return view('admin.layout.admin');
+        
     }
 
     /**

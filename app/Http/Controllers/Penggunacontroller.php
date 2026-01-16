@@ -12,10 +12,8 @@ class Penggunacontroller extends Controller
      */
     public function index()
     {
-        return view('pengguna.layout.pengguna');
-        // echo "halo selamat datang";
-        // echo "<h1>". Auth::user()->name ."</h1>";
-        // echo "<a href='logout'>Logout</a>";
+        $user = Auth::user();
+        return view('pengguna.layout.pengguna', compact('user'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rewardtransactions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Rewardtransactioncontroller extends Controller
 {
@@ -12,9 +13,14 @@ class Rewardtransactioncontroller extends Controller
      */
     public function index()
     {
-        $data = Rewardtransactions::get();
+        $user_id = Auth::id();
+
+        $history = Rewardtransactions::with('reward')
+        ->where('user_id', $user_id)
+        ->orderBy('created_at', 'desc')
+        ->get();
         //
-        return view('Users.rewardtransaction.index', compact('data'));
+        return view('pengguna.rewardtransaction.index', compact('history'));
     }
 
     /**

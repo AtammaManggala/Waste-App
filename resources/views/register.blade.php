@@ -46,7 +46,7 @@
         <div class="col-md-6 col-lg-5">
             <div class="card login-card">
                 <div class="card-body p-4">
-                    <h3 class="text-center mb-4 login-title">Login</h3>
+                    <h3 class="text-center mb-4 login-title">Buat Akun</h3>
 
                     @if($errors->any())
                         <div class="alert alert-danger">
@@ -62,13 +62,24 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="name" class="form-label">name</label>
+                            <input 
+                                type="nama" 
+                                value="{{ old('name') }}" 
+                                name="name" 
+                                class="form-control"
+                                placeholder="Masukkan Nama"
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">email</label>
                             <input 
                                 type="email" 
                                 value="{{ old('email') }}" 
                                 name="email" 
                                 class="form-control"
-                                placeholder="Masukkan email"
+                                placeholder="Masukkan Email"
                             >
                         </div>
 
@@ -83,12 +94,12 @@
                         </div>
 
                         <div class="d-grid gap-3">
-                            <button class="btn btn-primary btn-lg login-btn">
-                                Login
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Daftar
                             </button>
 
-                            <a href="{{ route('register.index') }}" class="btn btn-outline-primary btn-lg">
-                                Buat Akun
+                            <a href="{{ url('/') }}" class="btn btn-outline-primary btn-lg">
+                                Kembali ke Login
                             </a>
                         </div>
 
@@ -102,10 +113,6 @@
 
 </body>
 </html>
-
-
-
-
 
 
 

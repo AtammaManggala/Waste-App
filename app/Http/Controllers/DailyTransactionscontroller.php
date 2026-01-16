@@ -12,8 +12,8 @@ class DailyTransactionscontroller extends Controller
      */
     public function index()
     {
-        $data = dailyTransactions::get();
-        //
+        $data = dailyTransactions::where('user_id', auth()->id())->get();
+        // 
         return view('pengguna.dailytrans.index', compact('data'));
     }
 

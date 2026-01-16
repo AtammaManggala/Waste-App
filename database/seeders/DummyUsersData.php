@@ -22,9 +22,9 @@ class DummyUsersData extends Seeder
             //     'barcode'=>'1',
             // ],
             [
-                'name'=>'idoy',
-                'email'=>'idoy@gmail.com',
-                'role'=>'pengguna',
+                'name'=>'pak boss',
+                'email'=>'admin@gmail.com',
+                'role'=>'admin',
                 'password'=>bcrypt('123456'),
             ],
         ];

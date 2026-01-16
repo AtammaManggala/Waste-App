@@ -1,20 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\rewards;
+use App\Http\Controllers\Controller;
+use App\Models\servo;
 use Illuminate\Http\Request;
 
-class Rewardscontroller extends Controller
+class Servocontroller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = rewards::get();
         //
-        return view('Users.rewards.index', compact('data'));
+        return response()->json([
+            'success' =>true,
+            'data' => servo::select('id','status_servo')->get()
+        ]);
+        
     }
 
     /**
@@ -54,7 +58,12 @@ class Rewardscontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $servo = servo::findOrFall($id);
+        $servo->update([
+            'id'=>$request->id,
+            'status_servo'=>$request->status_servo,
+        ]);
+        
     }
 
     /**

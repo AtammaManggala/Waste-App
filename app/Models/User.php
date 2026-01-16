@@ -51,4 +51,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Rewardtransactions::class);
     }
+
+    public function dailyTransactions()
+    {
+        return $this->hasMany(dailyTransactions::class);
+    }
+
+    public function countTransaction()
+    {
+        return $this->hasOne(countTransactions::class);
+    }
 }

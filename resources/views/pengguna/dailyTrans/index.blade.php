@@ -87,9 +87,9 @@
       <a href="{{route('pengguna.index')}}">Halaman Utama</a>
       <a href="{{route('profil.index')}}">Profil</a>
       <a href="{{route('transaksiHarian.index')}}">Transaksi Harian</a>
-      <a href="#">Rekap Transaksi</a>
-      <a href="#">Daftar Hadiah</a>
-      <a href="#">Riwayat Penukaran Hadiah</a>
+      <a href="{{route('rekapTransaksi.index')}}">Rekap Transaksi</a>
+      <a href="{{route('reward.index')}}">Daftar Hadiah</a>
+      <a href="{{route('historyReward.index')}}">Riwayat Penukaran Hadiah</a>
 
       <hr class="text-secondary">
 
